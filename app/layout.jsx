@@ -2,7 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import ColorMode from "@/theme/colorMode";
-import Container from "@/components/Container";
+import ContainerNav from "@/components/Container";
+import { Container } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AppRouterCacheProvider>
           <ColorMode>
-            <Container>{children}</Container>
+            <ContainerNav>
+              <Container>{children}</Container>
+            </ContainerNav>
           </ColorMode>
         </AppRouterCacheProvider>
       </body>

@@ -11,9 +11,5 @@ async function getCountries() {
 
 export default async function Home() {
   const countries = await getCountries();
-  return (
-    <Container>
-      <CountriesGrid data={countries} />
-    </Container>
-  );
+  return <CountriesGrid data={countries} />;
 }

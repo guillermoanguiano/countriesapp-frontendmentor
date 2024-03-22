@@ -15,7 +15,7 @@ export default function ColorMode({ children }) {
   const storedMode = localStorage.getItem('colorMode');
   const [mode, setMode] = useState(storedMode || 'light');
 
-  console.log(mode)
+  (mode)
   
   const colorMode = useMemo(
     () => ({

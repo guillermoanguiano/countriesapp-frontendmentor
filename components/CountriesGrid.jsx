@@ -16,31 +16,27 @@ import {
 import { Search as SearchIcon } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function CountriesGrid({ data }) {
-  const [option, setOption] = useState('');
-  const [search, setSearch] = useState('');
+  const [option, setOption] = useState("");
+  const [search, setSearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(data);
-  const router = useRouter();
-  
+
   useEffect(() => {
-    const filteredByRegion = data.filter(country => {
-      if (option === '') {
-        return true; 
+    const filteredByRegion = data.filter((country) => {
+      if (option === "") {
+        return true;
       }
       return country.region.toLowerCase() === option;
     });
 
-    const filteredBySearch = filteredByRegion.filter(country =>
+    const filteredBySearch = filteredByRegion.filter((country) =>
       country.name.common.toLowerCase().includes(search.toLowerCase())
     );
 
     setFilteredCountries(filteredBySearch);
   }, [option, search, data]);
-
-  const handleClick = () => {
-
-  }
 
   return (
     <>
@@ -88,31 +84,33 @@ export default function CountriesGrid({ data }) {
       <Grid container spacing={2}>
         {filteredCountries.map((country) => (
           <Grid xs={12} sm={6} md={4} lg={3} item key={country.name.official}>
-            <Card onClick={handleClick} sx={{ maxWidth: 600 }}>
-              <CardMedia
-                sx={{ height: 180, backgroundColor: "blue" }}
-                image={country.flags.svg}
-                title={country.name.common}
-              />
-              <CardContent
-                sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-              >
-                <Typography gutterBottom variant="h5" component="div">
-                  {country.name.common}
-                </Typography>
-                <Box>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Population: </strong> {country.population}
+            <Link href={country.cca3} style={{ textDecoration: 'none'}} >
+              <Card sx={{ maxWidth: 600 }}>
+                <CardMedia
+                  sx={{ height: 180 }}
+                  image={country.flags.svg}
+                  title={country.name.common}
+                />
+                <CardContent
+                  sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+                >
+                  <Typography variant="h5" component="div">
+                    {country.name.common}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Region: </strong> {country.region}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Capital: </strong> {country.capital}
-                  </Typography>
-                </Box>
-              </CardContent>
-            </Card>
+                  <Box>
+                    <Typography variant="body2" >
+                      <strong>Population: </strong> {country.population}
+                    </Typography>
+                    <Typography variant="body2" >
+                      <strong>Region: </strong> {country.region}
+                    </Typography>
+                    <Typography variant="body2" >
+                      <strong>Capital: </strong> {country.capital}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Link>
           </Grid>
         ))}
       </Grid>

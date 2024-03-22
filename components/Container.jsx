@@ -21,7 +21,7 @@ const Container = ({ children }) => {
         flexGrow: 1,
         bgcolor: theme.palette.background.default,
         minHeight: "100vh",
-        color: theme.palette.action.active,
+        color: theme.palette.text.primary,
       }}
     >
       <AppBar
