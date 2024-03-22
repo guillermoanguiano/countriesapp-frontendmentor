@@ -2,15 +2,6 @@ import { Box, CircularProgress } from "@mui/material";
 
 export default function Loading() {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "100vh",
-      }}
-    >
-      <CircularProgress />
-    </Box>
+    <CircularProgress sx={{ position: "absolute", top: "50%", left: "50%" }} />
   );
 }
